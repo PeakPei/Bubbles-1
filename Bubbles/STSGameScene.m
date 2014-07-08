@@ -11,6 +11,7 @@
 @interface STSGameScene ()
 @property BOOL contentCreated;
 @property BOOL circleSelected;
+@property NSArray *circleImages;
 @end
 
 @implementation STSGameScene
@@ -27,18 +28,34 @@
 
 - (void)createSceneContents
 {
+    self.circleImages = [[NSArray alloc] initWithObjects:@"playerCircleYellow.png", @"playerCircleRed.png", @"playerCircle.png", nil];
     self.backgroundColor = [SKColor whiteColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
-    self.playerCircle = [SKSpriteNode spriteNodeWithImageNamed:@"playerCircle.png"];
+    
+    //PLAYER CIRCLE
+    int color = (arc4random() % 3);
+    self.playerCircle = [SKSpriteNode spriteNodeWithImageNamed:self.circleImages[color]];
     self.playerCircle.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:30];
     self.playerCircle.size = CGSizeMake(60, 60);
     self.playerCircle.physicsBody.dynamic = YES;
     self.playerCircle.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+    
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     [self addChild:self.playerCircle];
     
-    //self.playerCircle.userInteractionEnabled = YES;
+    //OTHER CIRCLES
+    self.circles = [NSMutableArray array];
+    for (int i = 0; i < 3; i++) {
+        SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:self.circleImages[i]];
+        node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:40];
+        node.size = CGSizeMake(80, 80);
+        float x = arc4random() % (int)self.frame.size.width;
+        float y = arc4random() % (int)self.frame.size.height;
+        node.position = CGPointMake(x, y);
+        [self.circles addObject:node];
+        [self addChild:node];
+    }
     
 }
 
@@ -50,7 +67,7 @@
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self.view];
     location.y = self.view.frame.size.height - location.y;
-    NSMutableArray *nodes = [self nodesAtPoint:location];
+    NSArray *nodes = [self nodesAtPoint:location];
     for (SKSpriteNode *node in nodes)
     {
         if ([self.playerCircle isEqual:node])
