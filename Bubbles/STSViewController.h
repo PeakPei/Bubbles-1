@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface STSViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITabBarItem *standardTab;
 
 @property (nonatomic) NSTimer *timer;
 @property (nonatomic) UILabel *timerLabel;

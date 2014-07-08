@@ -7,12 +7,24 @@
 //
 
 #import "STSAppDelegate.h"
+#import "STSViewController.h"
+#import "STSDerpyViewController.h"
+
 
 @implementation STSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    STSViewController *sts = [[STSViewController alloc] init];
+    STSDerpyViewController *sdvc = [[STSDerpyViewController alloc] init];
+    
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[sts, sdvc];
+    self.window.rootViewController = tabBarController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 							
