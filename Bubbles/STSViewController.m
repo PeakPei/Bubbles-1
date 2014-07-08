@@ -7,23 +7,28 @@
 //
 
 #import "STSViewController.h"
+#import <SpriteKit/SpriteKit.h>
+#import "STSGameScene.h"
 
 @interface STSViewController ()
 
 @end
 
 @implementation STSViewController
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    SKView *spriteView = (SKView *)self.view;
+    spriteView.showsDrawCount = YES;
+    spriteView.showsNodeCount = YES;
+    spriteView.showsFPS = YES;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    STSGameScene *game = [[STSGameScene alloc] initWithSize:self.view.frame.size];
+    SKView *spriteView = (SKView *)self.view;
+    [spriteView presentScene:game];
 }
-
 @end

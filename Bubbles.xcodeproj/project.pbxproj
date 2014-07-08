@@ -21,6 +21,8 @@
 		1E40401D196C4D6D00312CC6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E403FFF196C4D6D00312CC6 /* UIKit.framework */; };
 		1E404025196C4D6D00312CC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1E404023196C4D6D00312CC6 /* InfoPlist.strings */; };
 		1E404027196C4D6D00312CC6 /* BubblesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E404026196C4D6D00312CC6 /* BubblesTests.m */; };
+		1E404031196C4F7E00312CC6 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E404030196C4F7E00312CC6 /* SpriteKit.framework */; };
+		1E404034196C508600312CC6 /* STSGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E404033196C508600312CC6 /* STSGameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		1E404022196C4D6D00312CC6 /* BubblesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BubblesTests-Info.plist"; sourceTree = "<group>"; };
 		1E404024196C4D6D00312CC6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1E404026196C4D6D00312CC6 /* BubblesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BubblesTests.m; sourceTree = "<group>"; };
+		1E404030196C4F7E00312CC6 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		1E404032196C508600312CC6 /* STSGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSGameScene.h; sourceTree = "<group>"; };
+		1E404033196C508600312CC6 /* STSGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSGameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E404031196C4F7E00312CC6 /* SpriteKit.framework in Frameworks */,
 				1E403FFE196C4D6D00312CC6 /* CoreGraphics.framework in Frameworks */,
 				1E404000196C4D6D00312CC6 /* UIKit.framework in Frameworks */,
 				1E403FFC196C4D6D00312CC6 /* Foundation.framework in Frameworks */,
@@ -101,6 +107,7 @@
 		1E403FFA196C4D6D00312CC6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E404030196C4F7E00312CC6 /* SpriteKit.framework */,
 				1E403FFB196C4D6D00312CC6 /* Foundation.framework */,
 				1E403FFD196C4D6D00312CC6 /* CoreGraphics.framework */,
 				1E403FFF196C4D6D00312CC6 /* UIKit.framework */,
@@ -117,6 +124,8 @@
 				1E40400D196C4D6D00312CC6 /* Main.storyboard */,
 				1E404010196C4D6D00312CC6 /* STSViewController.h */,
 				1E404011196C4D6D00312CC6 /* STSViewController.m */,
+				1E404032196C508600312CC6 /* STSGameScene.h */,
+				1E404033196C508600312CC6 /* STSGameScene.m */,
 				1E404013196C4D6D00312CC6 /* Images.xcassets */,
 				1E404002196C4D6D00312CC6 /* Supporting Files */,
 			);
@@ -253,6 +262,7 @@
 				1E404008196C4D6D00312CC6 /* main.m in Sources */,
 				1E40400C196C4D6D00312CC6 /* STSAppDelegate.m in Sources */,
 				1E404012196C4D6D00312CC6 /* STSViewController.m in Sources */,
+				1E404034196C508600312CC6 /* STSGameScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +467,7 @@
 				1E40402C196C4D6D00312CC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1E40402D196C4D6D00312CC6 /* Build configuration list for PBXNativeTarget "BubblesTests" */ = {
 			isa = XCConfigurationList;
@@ -465,6 +476,7 @@
 				1E40402F196C4D6D00312CC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
