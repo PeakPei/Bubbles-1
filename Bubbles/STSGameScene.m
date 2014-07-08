@@ -8,10 +8,17 @@
 
 #import "STSGameScene.h"
 
-@interface STSGameScene ()
+@interface STSGameScene () <SKPhysicsContactDelegate>
 @property BOOL contentCreated;
 @property BOOL circleSelected;
 @property NSArray *circleImages;
+typedef enum  {
+    STSCircleColorRed = 1 ,
+    STSCircleColorYellow = 0,
+    STSCircleColorBlue = 2
+}STSCircleColors;
+
+
 @end
 
 @implementation STSGameScene
@@ -39,8 +46,12 @@
     self.playerCircle.size = CGSizeMake(60, 60);
     self.playerCircle.physicsBody.dynamic = YES;
     self.playerCircle.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+    self.playerCircle.physicsBody.categoryBitMask = color;
+    self.playerCircle.physicsBody.contactTestBitMask = color;
+    
     
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
+    self.physicsWorld.contactDelegate = self;
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     [self addChild:self.playerCircle];
     
@@ -106,5 +117,20 @@
             
         }
     }
+}
+- (void)didBeginContact:(SKPhysicsContact *)contact
+{
+    SKPhysicsBody *firstBody, *secondBody;
+    firstBody = contact.bodyA;
+    secondBody = contact.bodyB;
+    if ([firstBody isEqual:self.playerCircle.physicsBody] || [secondBody isEqual:self.playerCircle.physicsBody])
+    {
+        NSLog(@"contact detected");
+    }
+}
+
+- (void)didEndContact:(SKPhysicsContact *)contact
+{
+    NSLog(@"contact ended");
 }
 @end
