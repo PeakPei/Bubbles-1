@@ -35,7 +35,7 @@
     self.playerCircle.physicsBody.dynamic = YES;
     self.playerCircle.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
-    
+    self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
     [self addChild:self.playerCircle];
     
     //self.playerCircle.userInteractionEnabled = YES;
@@ -44,7 +44,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [self.playerCircle removeAllActions];
+    
     NSLog(@"%@", NSStringFromSelector(_cmd));
     //self.circleSelected = NO;
     UITouch *touch = [touches anyObject];
