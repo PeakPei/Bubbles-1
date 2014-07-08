@@ -35,6 +35,7 @@ typedef enum  {
 
 - (void)createSceneContents
 {
+
     self.circleImages = [[NSArray alloc] initWithObjects:@"playerCircleYellow.png", @"playerCircleRed.png", @"playerCircle.png", nil];
     self.backgroundColor = [SKColor whiteColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
@@ -46,13 +47,14 @@ typedef enum  {
     self.playerCircle.size = CGSizeMake(60, 60);
     self.playerCircle.physicsBody.dynamic = YES;
     self.playerCircle.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
-    self.playerCircle.physicsBody.categoryBitMask = color;
-    self.playerCircle.physicsBody.contactTestBitMask = color;
+    self.playerCircle.physicsBody.categoryBitMask = color+3;
+    self.playerCircle.physicsBody.contactTestBitMask = 10;
     
     
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
     self.physicsWorld.contactDelegate = self;
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+
     [self addChild:self.playerCircle];
     
     //OTHER CIRCLES
@@ -64,6 +66,8 @@ typedef enum  {
         float x = arc4random() % (int)self.frame.size.width;
         float y = arc4random() % (int)self.frame.size.height;
         node.position = CGPointMake(x, y);
+        node.physicsBody.categoryBitMask = i;
+        node.physicsBody.contactTestBitMask = i+5;
         [self.circles addObject:node];
         [self addChild:node];
     }
@@ -83,6 +87,7 @@ typedef enum  {
     {
         if ([self.playerCircle isEqual:node])
         {
+            [self.playerCircle removeAllActions];
             self.circleSelected = YES;
             NSLog(@"circle selected");
         }
@@ -123,14 +128,36 @@ typedef enum  {
     SKPhysicsBody *firstBody, *secondBody;
     firstBody = contact.bodyA;
     secondBody = contact.bodyB;
+           // NSLog(@"contact between some circles");
     if ([firstBody isEqual:self.playerCircle.physicsBody] || [secondBody isEqual:self.playerCircle.physicsBody])
     {
-        NSLog(@"contact detected");
+        if (MAX(firstBody.categoryBitMask, secondBody.categoryBitMask) == MIN(firstBody.categoryBitMask, secondBody.categoryBitMask) + 3)
+        {
+            NSLog(@"Contact between same colours");
+            self.points++;
+            NSLog(@"Won points: %d", self.points);
+        }
+        else{
+            NSLog(@"Diff colours");
+            self.points--;
+            NSLog(@"Lost points: %d", self.points);
+        }
     }
+    /*if ([secondBody isEqual:self.playerCircle.physicsBody])
+    {
+        if (secondBody.categoryBitMask == firstBody
+            .categoryBitMask + 3)
+        {
+            NSLog(@"Contact between same colours");
+        }
+        else{
+            NSLog(@"Diff colours");
+        }
+    }*/
 }
 
 - (void)didEndContact:(SKPhysicsContact *)contact
 {
-    NSLog(@"contact ended");
+    //NSLog(@"contact ended");
 }
 @end
