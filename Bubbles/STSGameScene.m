@@ -16,6 +16,9 @@ typedef enum  {
     STSCircleColorRed = 1 ,
     STSCircleColorYellow = 0,
     STSCircleColorBlue = 2,
+    STSCircleColorOrange = 3,
+    STSCircleColorGreen = 4,
+    STSCircleColorPurple = 5
 }STSCircleColors;
 
 
@@ -40,7 +43,7 @@ typedef enum  {
 - (void)createSceneContents
 {
 
-    self.circleImages = [[NSArray alloc] initWithObjects:@"playerCircleYellow.png", @"playerCircleRed.png", @"playerCircle.png", nil];
+    self.circleImages = [[NSArray alloc] initWithObjects:@"playerCircleYellow.png", @"playerCircleRed.png", @"playerCircle.png", @"playerCircleOrange.png", @"playerCircleGreen.png", @"playerCirclePurple.png", nil];
     self.backgroundColor = [SKColor whiteColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
@@ -64,15 +67,16 @@ typedef enum  {
 //    
     //OTHER CIRCLES
     self.circles = [NSMutableArray array];
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 6; i++) {
         SKSpriteNode *node = [SKSpriteNode spriteNodeWithImageNamed:self.circleImages[i]];
         node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:40];
+        node.physicsBody.mass *= 2;
         node.size = CGSizeMake(80, 80);
         float x = arc4random() % (int)self.frame.size.width;
         float y = arc4random() % (int)self.frame.size.height-60;
         node.position = CGPointMake(x, y);
         node.physicsBody.categoryBitMask = i;
-        node.physicsBody.contactTestBitMask = i+5;
+        node.physicsBody.contactTestBitMask = i+15;
         [self.circles addObject:node];
         [self addChild:node];
     }
@@ -81,14 +85,14 @@ typedef enum  {
 
 - (void)makePlayer
 {
-    int color = (arc4random() % 3);
+    int color = (arc4random() % 6);
     self.playerCircle = [SKSpriteNode spriteNodeWithImageNamed:self.circleImages[color]];
     self.playerCircle.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:10];
     self.playerCircle.size = CGSizeMake(60, 60);
     self.playerCircle.physicsBody.dynamic = YES;
     self.playerCircle.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
-    self.playerCircle.physicsBody.categoryBitMask = color+3;
-    self.playerCircle.physicsBody.contactTestBitMask = 10;
+    self.playerCircle.physicsBody.categoryBitMask = color+6;
+    self.playerCircle.physicsBody.contactTestBitMask = 15;
     self.playerCircle.name = @"playerCircle";
     [self addChild:self.playerCircle];
     
@@ -151,15 +155,15 @@ typedef enum  {
            // NSLog(@"contact between some circles");
     if ([firstBody isEqual:self.playerCircle.physicsBody] || [secondBody isEqual:self.playerCircle.physicsBody])
     {
-        if (MAX(firstBody.categoryBitMask, secondBody.categoryBitMask) == MIN(firstBody.categoryBitMask, secondBody.categoryBitMask) + 3)
+        if (MAX(firstBody.categoryBitMask, secondBody.categoryBitMask) == MIN(firstBody.categoryBitMask, secondBody.categoryBitMask) + 6)
         {
             NSLog(@"Contact between same colours");
             self.points++;
             NSLog(@"Won points: %d", self.points);
-            int color = (arc4random() % 3);
+            int color = (arc4random() % 6);
             self.playerCircle.texture = [SKTexture textureWithImageNamed:self.circleImages[color]];
-            self.playerCircle.physicsBody.categoryBitMask = color+3;
-            self.playerCircle.physicsBody.contactTestBitMask = 10;
+            self.playerCircle.physicsBody.categoryBitMask = color+6;
+            self.playerCircle.physicsBody.contactTestBitMask = 15;
             self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
            // [self makePlayer];
             
