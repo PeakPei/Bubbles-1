@@ -13,7 +13,6 @@
 		1E404006196C4D6D00312CC6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1E404004196C4D6D00312CC6 /* InfoPlist.strings */; };
 		1E404008196C4D6D00312CC6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E404007196C4D6D00312CC6 /* main.m */; };
 		1E40400C196C4D6D00312CC6 /* STSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E40400B196C4D6D00312CC6 /* STSAppDelegate.m */; };
-		1E40400F196C4D6D00312CC6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E40400D196C4D6D00312CC6 /* Main.storyboard */; };
 		1E404012196C4D6D00312CC6 /* STSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E404011196C4D6D00312CC6 /* STSViewController.m */; };
 		1E404014196C4D6D00312CC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E404013196C4D6D00312CC6 /* Images.xcassets */; };
 		1E40401B196C4D6D00312CC6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E40401A196C4D6D00312CC6 /* XCTest.framework */; };
@@ -23,6 +22,8 @@
 		1E404027196C4D6D00312CC6 /* BubblesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E404026196C4D6D00312CC6 /* BubblesTests.m */; };
 		1E404031196C4F7E00312CC6 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E404030196C4F7E00312CC6 /* SpriteKit.framework */; };
 		1E404034196C508600312CC6 /* STSGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E404033196C508600312CC6 /* STSGameScene.m */; };
+		1E92702F196CB567007677E6 /* STSDerpyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E92702E196CB567007677E6 /* STSDerpyViewController.m */; };
+		1E927032196CB5CB007677E6 /* STSDerpyGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E927031196CB5CB007677E6 /* STSDerpyGameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +47,6 @@
 		1E404009196C4D6D00312CC6 /* Bubbles-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bubbles-Prefix.pch"; sourceTree = "<group>"; };
 		1E40400A196C4D6D00312CC6 /* STSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STSAppDelegate.h; sourceTree = "<group>"; };
 		1E40400B196C4D6D00312CC6 /* STSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STSAppDelegate.m; sourceTree = "<group>"; };
-		1E40400E196C4D6D00312CC6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1E404010196C4D6D00312CC6 /* STSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STSViewController.h; sourceTree = "<group>"; };
 		1E404011196C4D6D00312CC6 /* STSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STSViewController.m; sourceTree = "<group>"; };
 		1E404013196C4D6D00312CC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -58,6 +58,10 @@
 		1E404030196C4F7E00312CC6 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		1E404032196C508600312CC6 /* STSGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSGameScene.h; sourceTree = "<group>"; };
 		1E404033196C508600312CC6 /* STSGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSGameScene.m; sourceTree = "<group>"; };
+		1E92702D196CB567007677E6 /* STSDerpyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSDerpyViewController.h; sourceTree = "<group>"; };
+		1E92702E196CB567007677E6 /* STSDerpyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSDerpyViewController.m; sourceTree = "<group>"; };
+		1E927030196CB5CB007677E6 /* STSDerpyGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSDerpyGameScene.h; sourceTree = "<group>"; };
+		1E927031196CB5CB007677E6 /* STSDerpyGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSDerpyGameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,13 +123,16 @@
 		1E404001196C4D6D00312CC6 /* Bubbles */ = {
 			isa = PBXGroup;
 			children = (
+				1E92702D196CB567007677E6 /* STSDerpyViewController.h */,
+				1E92702E196CB567007677E6 /* STSDerpyViewController.m */,
 				1E40400A196C4D6D00312CC6 /* STSAppDelegate.h */,
 				1E40400B196C4D6D00312CC6 /* STSAppDelegate.m */,
-				1E40400D196C4D6D00312CC6 /* Main.storyboard */,
 				1E404010196C4D6D00312CC6 /* STSViewController.h */,
 				1E404011196C4D6D00312CC6 /* STSViewController.m */,
 				1E404032196C508600312CC6 /* STSGameScene.h */,
 				1E404033196C508600312CC6 /* STSGameScene.m */,
+				1E927030196CB5CB007677E6 /* STSDerpyGameScene.h */,
+				1E927031196CB5CB007677E6 /* STSDerpyGameScene.m */,
 				1E404013196C4D6D00312CC6 /* Images.xcassets */,
 				1E404002196C4D6D00312CC6 /* Supporting Files */,
 			);
@@ -240,7 +247,6 @@
 			files = (
 				1E404014196C4D6D00312CC6 /* Images.xcassets in Resources */,
 				1E404006196C4D6D00312CC6 /* InfoPlist.strings in Resources */,
-				1E40400F196C4D6D00312CC6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,9 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E927032196CB5CB007677E6 /* STSDerpyGameScene.m in Sources */,
 				1E404008196C4D6D00312CC6 /* main.m in Sources */,
 				1E40400C196C4D6D00312CC6 /* STSAppDelegate.m in Sources */,
 				1E404012196C4D6D00312CC6 /* STSViewController.m in Sources */,
+				1E92702F196CB567007677E6 /* STSDerpyViewController.m in Sources */,
 				1E404034196C508600312CC6 /* STSGameScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,14 +299,6 @@
 				1E404005196C4D6D00312CC6 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1E40400D196C4D6D00312CC6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1E40400E196C4D6D00312CC6 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		1E404023196C4D6D00312CC6 /* InfoPlist.strings */ = {
@@ -390,7 +390,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bubbles/Bubbles-Prefix.pch";
 				INFOPLIST_FILE = "Bubbles/Bubbles-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -403,7 +405,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Bubbles/Bubbles-Prefix.pch";
 				INFOPLIST_FILE = "Bubbles/Bubbles-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

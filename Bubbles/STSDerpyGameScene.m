@@ -1,14 +1,14 @@
 //
-//  STSGameScene.m
+//  STSDerpyGameScene.m
 //  Bubbles
 //
 //  Created by Sophia Anopa on 7/8/14.
 //  Copyright (c) 2014 STS. All rights reserved.
 //
 
-#import "STSGameScene.h"
+#import "STSDerpyGameScene.h"
 
-@interface STSGameScene () <SKPhysicsContactDelegate>
+@interface STSDerpyGameScene () <SKPhysicsContactDelegate>
 @property BOOL contentCreated;
 @property BOOL circleSelected;
 @property NSArray *circleImages;
@@ -24,7 +24,7 @@ typedef enum  {
 
 @end
 
-@implementation STSGameScene
+@implementation STSDerpyGameScene
 - (void)didMoveToView:(SKView *)view
 {
     if (!self.contentCreated) {
@@ -42,30 +42,30 @@ typedef enum  {
 
 - (void)createSceneContents
 {
-
+    
     self.circleImages = [[NSArray alloc] initWithObjects:@"playerCircleYellow.png", @"playerCircleRed.png", @"playerCircle.png", @"playerCircleOrange.png", @"playerCircleGreen.png", @"playerCirclePurple.png", nil];
     self.backgroundColor = [SKColor whiteColor];
     self.scaleMode = SKSceneScaleModeAspectFit;
     
     //PLAYER CIRCLE
     [self makePlayer];
-//    int color = (arc4random() % 3);
-//    self.playerCircle = [SKSpriteNode spriteNodeWithImageNamed:self.circleImages[color]];
-//    self.playerCircle.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:30];
-//    self.playerCircle.size = CGSizeMake(60, 60);
-//    self.playerCircle.physicsBody.dynamic = YES;
-//    self.playerCircle.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
-//    self.playerCircle.physicsBody.categoryBitMask = color+3;
-//    self.playerCircle.physicsBody.contactTestBitMask = 10;
+    //    int color = (arc4random() % 3);
+    //    self.playerCircle = [SKSpriteNode spriteNodeWithImageNamed:self.circleImages[color]];
+    //    self.playerCircle.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:30];
+    //    self.playerCircle.size = CGSizeMake(60, 60);
+    //    self.playerCircle.physicsBody.dynamic = YES;
+    //    self.playerCircle.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
+    //    self.playerCircle.physicsBody.categoryBitMask = color+3;
+    //    self.playerCircle.physicsBody.contactTestBitMask = 10;
     
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
     self.physicsWorld.contactDelegate = self;
     CGRect smallFrame = CGRectMake(0, 50, self.frame.size.width, self.frame.size.height-110);
     NSLog(@"%f, %f", smallFrame.size.height, self.frame.size.height);
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:smallFrame];
-
-//    [self addChild:self.playerCircle];
-//    
+    
+    //    [self addChild:self.playerCircle];
+    //
     //OTHER CIRCLES
     self.circles = [NSMutableArray array];
     for (int i = 0; i < 6; i++) {
@@ -153,7 +153,7 @@ typedef enum  {
     SKPhysicsBody *firstBody, *secondBody;
     firstBody = contact.bodyA;
     secondBody = contact.bodyB;
-           // NSLog(@"contact between some circles");
+    // NSLog(@"contact between some circles");
     if ([firstBody isEqual:self.playerCircle.physicsBody] || [secondBody isEqual:self.playerCircle.physicsBody])
     {
         if (MAX(firstBody.categoryBitMask, secondBody.categoryBitMask) == MIN(firstBody.categoryBitMask, secondBody.categoryBitMask) + 6)
@@ -166,7 +166,7 @@ typedef enum  {
             self.playerCircle.physicsBody.categoryBitMask = color+6;
             self.playerCircle.physicsBody.contactTestBitMask = 15;
             self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
-           // [self makePlayer];
+            // [self makePlayer];
             
         }
         else{
@@ -181,20 +181,21 @@ typedef enum  {
         }
     }
     /*if ([secondBody isEqual:self.playerCircle.physicsBody])
-    {
-        if (secondBody.categoryBitMask == firstBody
-            .categoryBitMask + 3)
-        {
-            NSLog(@"Contact between same colours");
-        }
-        else{
-            NSLog(@"Diff colours");
-        }
-    }*/
+     {
+     if (secondBody.categoryBitMask == firstBody
+     .categoryBitMask + 3)
+     {
+     NSLog(@"Contact between same colours");
+     }
+     else{
+     NSLog(@"Diff colours");
+     }
+     }*/
 }
 
 - (void)didEndContact:(SKPhysicsContact *)contact
 {
     //NSLog(@"contact ended");
 }
+
 @end
