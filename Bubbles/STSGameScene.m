@@ -16,7 +16,6 @@ typedef enum  {
     STSCircleColorRed = 1 ,
     STSCircleColorYellow = 0,
     STSCircleColorBlue = 2,
-    STSCircleColorWall = 6
 }STSCircleColors;
 
 
@@ -58,7 +57,8 @@ typedef enum  {
     
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
     self.physicsWorld.contactDelegate = self;
-    self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+    CGRect smallFrame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-60);
+    self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:smallFrame];
 
 //    [self addChild:self.playerCircle];
 //    
@@ -69,7 +69,7 @@ typedef enum  {
         node.physicsBody = [SKPhysicsBody bodyWithCircleOfRadius:40];
         node.size = CGSizeMake(80, 80);
         float x = arc4random() % (int)self.frame.size.width;
-        float y = arc4random() % (int)self.frame.size.height;
+        float y = arc4random() % (int)self.frame.size.height-60;
         node.position = CGPointMake(x, y);
         node.physicsBody.categoryBitMask = i;
         node.physicsBody.contactTestBitMask = i+5;
@@ -90,8 +90,6 @@ typedef enum  {
     self.playerCircle.physicsBody.categoryBitMask = color+3;
     self.playerCircle.physicsBody.contactTestBitMask = 10;
     self.playerCircle.name = @"playerCircle";
-    self.physicsBody.categoryBitMask = STSCircleColorWall;
-    self.physicsBody.contactTestBitMask = STSCircleColorWall;
     [self addChild:self.playerCircle];
     
 }
@@ -139,7 +137,7 @@ typedef enum  {
             CGPoint velocity = [gr velocityInView:self.view];
             velocity = [self convertPointFromView:velocity];
             
-            [self.playerCircle.physicsBody applyForce:CGVectorMake(velocity.x, velocity.y)];
+            [self.playerCircle.physicsBody applyForce:CGVectorMake(velocity.x-10, velocity.y-10)];
             self.circleSelected = NO;
             
         }

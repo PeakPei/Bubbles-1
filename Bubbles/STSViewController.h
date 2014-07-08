@@ -10,5 +10,6 @@
 
 @interface STSViewController : UIViewController
 
-
+@property (nonatomic) NSTimer *timer;
+@property (nonatomic) UILabel *timerLabel;
 @end

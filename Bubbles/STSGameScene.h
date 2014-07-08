@@ -12,7 +12,7 @@
 @property (nonatomic) NSMutableArray *circles;
 @property (nonatomic) SKSpriteNode *playerCircle;
 @property int points;
-@property (nonatomic) NSTimer *timer;
+//@property (nonatomic) NSTimer *timer;
 @property (nonatomic, strong) UILabel *scoreLabel;
 
 @end
