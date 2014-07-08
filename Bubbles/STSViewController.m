@@ -27,5 +27,7 @@
     STSGameScene *game = [[STSGameScene alloc] initWithSize:self.view.frame.size];
     SKView *spriteView = (SKView *)self.view;
     [spriteView presentScene:game];
+    
+    
 }
 @end

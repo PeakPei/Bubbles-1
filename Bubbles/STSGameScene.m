@@ -15,7 +15,8 @@
 typedef enum  {
     STSCircleColorRed = 1 ,
     STSCircleColorYellow = 0,
-    STSCircleColorBlue = 2
+    STSCircleColorBlue = 2,
+    STSCircleColorWall = 6
 }STSCircleColors;
 
 
@@ -30,6 +31,10 @@ typedef enum  {
         UIPanGestureRecognizer *gestureRecogniser = [[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                             action:@selector(flicked:)];
         [view addGestureRecognizer:gestureRecogniser];
+        
+        self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 31, 100, 21)];
+        self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
+        [self.view addSubview:self.scoreLabel];
     }
 }
 
@@ -85,7 +90,8 @@ typedef enum  {
     self.playerCircle.physicsBody.categoryBitMask = color+3;
     self.playerCircle.physicsBody.contactTestBitMask = 10;
     self.playerCircle.name = @"playerCircle";
-
+    self.physicsBody.categoryBitMask = STSCircleColorWall;
+    self.physicsBody.contactTestBitMask = STSCircleColorWall;
     [self addChild:self.playerCircle];
     
 }
@@ -156,13 +162,19 @@ typedef enum  {
             self.playerCircle.texture = [SKTexture textureWithImageNamed:self.circleImages[color]];
             self.playerCircle.physicsBody.categoryBitMask = color+3;
             self.playerCircle.physicsBody.contactTestBitMask = 10;
+            self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
            // [self makePlayer];
             
         }
         else{
-            NSLog(@"Diff colours");
-            self.points--;
-            NSLog(@"Lost points: %d", self.points);
+            if (firstBody.categoryBitMask != -1 && secondBody.categoryBitMask != -1)
+            {
+                NSLog(@"%d, %d", firstBody.categoryBitMask, secondBody.categoryBitMask);
+                NSLog(@"Diff colours");
+                self.points--;
+                NSLog(@"Lost points: %d", self.points);
+                self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
+            }
         }
     }
     /*if ([secondBody isEqual:self.playerCircle.physicsBody])
