@@ -61,7 +61,7 @@ typedef enum  {
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
     self.physicsWorld.contactDelegate = self;
     CGRect smallFrame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-60);
-    NSLog(@"%f, %f", smallFrame.size.height, self.frame.size.height);
+    //NSLog(@"%f, %f", smallFrame.size.height, self.frame.size.height);
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:smallFrame];
     
     //    [self addChild:self.playerCircle];
@@ -78,6 +78,7 @@ typedef enum  {
         node.position = CGPointMake(x, y);
         node.physicsBody.categoryBitMask = i;
         node.physicsBody.contactTestBitMask = i+15;
+        node.physicsBody.restitution = 1.0;
         [self.circles addObject:node];
         [self addChild:node];
     }
@@ -94,6 +95,7 @@ typedef enum  {
     self.playerCircle.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMidY(self.frame));
     self.playerCircle.physicsBody.categoryBitMask = color+6;
     self.playerCircle.physicsBody.contactTestBitMask = 15;
+    self.playerCircle.physicsBody.restitution = 1.0;
     self.playerCircle.name = @"playerCircle";
     [self addChild:self.playerCircle];
     
@@ -102,7 +104,7 @@ typedef enum  {
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    //NSLog(@"%@", NSStringFromSelector(_cmd));
     //self.circleSelected = NO;
     UITouch *touch = [touches anyObject];
     CGPoint location = [touch locationInView:self.view];
@@ -114,7 +116,7 @@ typedef enum  {
         {
             [self.playerCircle removeAllActions];
             self.circleSelected = YES;
-            NSLog(@"circle selected");
+            //NSLog(@"circle selected");
         }
         //[self.playerCircle runAction:[SKAction repeatActionForever:UI]]
     }
@@ -126,23 +128,23 @@ typedef enum  {
 {
     if(self.circleSelected)
     {
-        if (gr.state == UIGestureRecognizerStateChanged)
-        {
-            CGPoint move = [gr translationInView:self.view];
-            SKAction *moveAction = [SKAction moveByX:move.x
-                                                   y:move.y
-                                            duration:0];
-            [self.playerCircle runAction:moveAction];
-            [gr setTranslation:CGPointMake(0, 0)
-                        inView:self.view];
-        }
+//        if (gr.state == UIGestureRecognizerStateChanged)
+//        {
+//            CGPoint move = [gr translationInView:self.view];
+//            SKAction *moveAction = [SKAction moveByX:move.x
+//                                                   y:move.y
+//                                            duration:0];
+//            [self.playerCircle runAction:moveAction];
+//            [gr setTranslation:CGPointMake(0, 0)
+//                        inView:self.view];
+//        }
         
         if(gr.state == UIGestureRecognizerStateEnded)
         {
             CGPoint velocity = [gr velocityInView:self.view];
             velocity = [self convertPointFromView:velocity];
             
-            [self.playerCircle.physicsBody applyForce:CGVectorMake(velocity.x*0.8, velocity.y*0.8)];
+            [self.playerCircle.physicsBody applyForce:CGVectorMake(velocity.x*0.8, -velocity.y*0.8)];
             self.circleSelected = NO;
             
         }
@@ -158,9 +160,9 @@ typedef enum  {
     {
         if (MAX(firstBody.categoryBitMask, secondBody.categoryBitMask) == MIN(firstBody.categoryBitMask, secondBody.categoryBitMask) + 6)
         {
-            NSLog(@"Contact between same colours");
+            //NSLog(@"Contact between same colours");
             self.points++;
-            NSLog(@"Won points: %d", self.points);
+            //NSLog(@"Won points: %d", self.points);
             int color = (arc4random() % 6);
             self.playerCircle.texture = [SKTexture textureWithImageNamed:self.circleImages[color]];
             self.playerCircle.physicsBody.categoryBitMask = color+6;
@@ -172,10 +174,10 @@ typedef enum  {
         else{
             if (firstBody.categoryBitMask != -1 && secondBody.categoryBitMask != -1)
             {
-                NSLog(@"%d, %d", firstBody.categoryBitMask, secondBody.categoryBitMask);
-                NSLog(@"Diff colours");
+                //NSLog(@"%d, %d", firstBody.categoryBitMask, secondBody.categoryBitMask);
+                //NSLog(@"Diff colours");
                 self.points--;
-                NSLog(@"Lost points: %d", self.points);
+                //NSLog(@"Lost points: %d", self.points);
                 self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
             }
         }

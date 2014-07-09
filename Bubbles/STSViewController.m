@@ -56,12 +56,7 @@
         NSTimeInterval timeLeft = [myTimerDate timeIntervalSinceNow];
         self.timerLabel.text = [NSString stringWithFormat:@"Time left: %.2f", timeLeft];
         [self.view addSubview:self.timerLabel];
-    } else {
-        [self resumeTimer:self.displayTimer];
-        [self resumeTimer:self.timer];
-        [self.view addSubview:self.timerLabel];
-        [self.game.view addSubview:self.game.scoreLabel];
-    }
+    } 
 
 }
 
@@ -83,24 +78,27 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     [self.game removeFromParent];
-     self.game = [[STSGameScene alloc] initWithSize:self.view.frame.size];
-    SKView *spriteView = (SKView *)self.view;
-    [spriteView presentScene:self.game];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(gameOver:) userInfo:nil repeats:NO];
-    self.timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 31, 300, 21)];
+    self.game = nil;
+//     self.game = [[STSGameScene alloc] initWithSize:self.view.frame.size];
+//    SKView *spriteView = (SKView *)self.view;
+//    [spriteView presentScene:self.game];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(gameOver:) userInfo:nil repeats:NO];
+//    self.timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 31, 300, 21)];
+//    
+//    //TIMER LABEL
+//    self.period = 30;
+//    self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:1
+//                                                             target:self
+//                                                           selector:@selector(updateTime:)
+//                                                           userInfo:nil
+//                                                            repeats:YES];
+//    NSDate *myTimerDate = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval)self.period];
+//    NSTimeInterval timeLeft = [myTimerDate timeIntervalSinceNow];
+//    self.timerLabel.text = [NSString stringWithFormat:@"Time left: %.2f", timeLeft];
+//    
+//    [self.view addSubview:self.timerLabel];
+    [self viewWillAppear:YES];
     
-    //TIMER LABEL
-    self.period = 30;
-    self.displayTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                             target:self
-                                                           selector:@selector(updateTime:)
-                                                           userInfo:nil
-                                                            repeats:YES];
-    NSDate *myTimerDate = [[NSDate alloc] initWithTimeIntervalSinceNow:(NSTimeInterval)self.period];
-    NSTimeInterval timeLeft = [myTimerDate timeIntervalSinceNow];
-    self.timerLabel.text = [NSString stringWithFormat:@"Time left: %.2f", timeLeft];
-    [self.view addSubview:self.timerLabel];
-
 }
 
 - (void)updateTime:(id)sender
@@ -110,32 +108,6 @@
     NSTimeInterval timeLeft = [myTimerDate timeIntervalSinceNow];
     self.timerLabel.text = [NSString stringWithFormat:@"Time left: %.2f", timeLeft];
     //[self.view addSubview:self.timerLabel];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [self pauseTimer:self.displayTimer];
-    [self pauseTimer:self.timer];
-    [self.timerLabel removeFromSuperview];
-    [self.game.scoreLabel removeFromSuperview];
-    
-}
-
--(void) pauseTimer:(NSTimer *)timer {
-    
-    self.pauseStart = [[NSDate dateWithTimeIntervalSinceNow:0] copy];
-    
-    self.previousFireDate = [[timer fireDate] copy];
-    
-    [timer setFireDate:[NSDate distantFuture]];
-}
-
--(void) resumeTimer:(NSTimer *)timer {
-    
-    float pauseTime = -1*[self.pauseStart timeIntervalSinceNow];
-    
-    [timer setFireDate:[self.previousFireDate initWithTimeInterval:pauseTime sinceDate:self.previousFireDate]];
 }
 
 

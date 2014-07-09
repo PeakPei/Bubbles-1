@@ -61,7 +61,7 @@ typedef enum  {
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
     self.physicsWorld.contactDelegate = self;
     CGRect smallFrame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-60);
-    NSLog(@"%f, %f", smallFrame.size.height, self.frame.size.height);
+    //NSLog(@"%f, %f", smallFrame.size.height, self.frame.size.height);
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:smallFrame];
 
 //    [self addChild:self.playerCircle];
@@ -129,25 +129,41 @@ typedef enum  {
         if (gr.state == UIGestureRecognizerStateChanged)
         {
             CGPoint move = [gr translationInView:self.view];
-            SKAction *moveAction = [SKAction moveByX:move.x
-                                                   y:-move.y
-                                            duration:0];
-            [self.playerCircle runAction:moveAction];
-            [gr setTranslation:CGPointMake(0, 0)
-                        inView:self.view];
+            CGPoint newPos = CGPointMake(self.view.bounds.size.width /2, gr.view.center.y + move.y);
+            
+            if(newPos.y <= self.frame.size.height-60  && newPos.y > 0 && newPos.x <= self.frame.size.width && newPos.x > 0)
+            {
+                SKAction *moveAction = [SKAction moveByX:move.x
+                                                       y:-move.y
+                                                duration:0];
+                [self.playerCircle runAction:moveAction];
+                NSLog(@"%f, %f", self.playerCircle.position.x, self.playerCircle.position.y);
+                [gr setTranslation:CGPointMake(0, 0)
+                            inView:self.view];
+            }
+            
         }
         
         if(gr.state == UIGestureRecognizerStateEnded)
         {
             CGPoint velocity = [gr velocityInView:self.view];
-            velocity = [self convertPointFromView:velocity];
+            CGPoint move = [gr translationInView:self.view];
+            CGPoint newPos = CGPointMake(self.view.bounds.size.width /2, gr.view.center.y + move.y);
             
-            [self.playerCircle.physicsBody applyForce:CGVectorMake(velocity.x*0.8, velocity.y*0.8)];
-            self.circleSelected = NO;
+            if(newPos.y <= self.frame.size.height-60  && newPos.y > 0 && newPos.x <= self.frame.size.width && newPos.x > 0 && velocity.x > 15 && velocity.y > 15)
+            {
+                
+
+                velocity = [self convertPointFromView:velocity];
+                
+                [self.playerCircle.physicsBody applyForce:CGVectorMake(velocity.x*0.5, velocity.y*0.5)];
+                self.circleSelected = NO;
+            }
             
         }
     }
 }
+
 - (void)didBeginContact:(SKPhysicsContact *)contact
 {
     SKPhysicsBody *firstBody, *secondBody;
