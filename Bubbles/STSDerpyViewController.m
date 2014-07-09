@@ -135,6 +135,14 @@
     
 }
 
+- (void) viewDidDisappear:(BOOL)animated
+{
+    
+    [self.timer invalidate];
+    [self.displayTimer invalidate];
+}
+
+
 //-(void) pauseTimer:(NSTimer *)timer {
 //    
 //    self.pauseStart = [[NSDate dateWithTimeIntervalSinceNow:0] copy];

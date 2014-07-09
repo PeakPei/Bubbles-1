@@ -138,6 +138,7 @@ typedef enum  {
     {
         if (gr.state == UIGestureRecognizerStateChanged)
         {
+            self.playerCircle.physicsBody.velocity = CGVectorMake(0, 0);
             CGPoint move = [gr translationInView:self.view];
             CGPoint newPos = CGPointMake(self.view.bounds.size.width /2, gr.view.center.y + move.y);
             

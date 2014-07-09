@@ -129,6 +129,13 @@
     //[self.view addSubview:self.timerLabel];
 }
 
+- (void) viewDidDisappear:(BOOL)animated
+{
+
+    [self.timer invalidate];
+    [self.displayTimer invalidate];
+}
+
 
 
 @end
