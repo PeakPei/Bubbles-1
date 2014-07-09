@@ -24,6 +24,8 @@
 		1E404034196C508600312CC6 /* STSGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E404033196C508600312CC6 /* STSGameScene.m */; };
 		1E92702F196CB567007677E6 /* STSDerpyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E92702E196CB567007677E6 /* STSDerpyViewController.m */; };
 		1E927032196CB5CB007677E6 /* STSDerpyGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E927031196CB5CB007677E6 /* STSDerpyGameScene.m */; };
+		1EBFF82B196CBECE00BF23DD /* STSHelloScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBFF82A196CBECE00BF23DD /* STSHelloScene.m */; };
+		1EBFF82E196CC1BD00BF23DD /* STSNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBFF82D196CC1BD00BF23DD /* STSNavigationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,10 @@
 		1E92702E196CB567007677E6 /* STSDerpyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSDerpyViewController.m; sourceTree = "<group>"; };
 		1E927030196CB5CB007677E6 /* STSDerpyGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSDerpyGameScene.h; sourceTree = "<group>"; };
 		1E927031196CB5CB007677E6 /* STSDerpyGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSDerpyGameScene.m; sourceTree = "<group>"; };
+		1EBFF829196CBECE00BF23DD /* STSHelloScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSHelloScene.h; sourceTree = "<group>"; };
+		1EBFF82A196CBECE00BF23DD /* STSHelloScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSHelloScene.m; sourceTree = "<group>"; };
+		1EBFF82C196CC1BD00BF23DD /* STSNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STSNavigationViewController.h; path = ../STSNavigationViewController.h; sourceTree = "<group>"; };
+		1EBFF82D196CC1BD00BF23DD /* STSNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STSNavigationViewController.m; path = ../STSNavigationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,10 @@
 		1E404001196C4D6D00312CC6 /* Bubbles */ = {
 			isa = PBXGroup;
 			children = (
+				1EBFF829196CBECE00BF23DD /* STSHelloScene.h */,
+				1EBFF82A196CBECE00BF23DD /* STSHelloScene.m */,
+				1EBFF82C196CC1BD00BF23DD /* STSNavigationViewController.h */,
+				1EBFF82D196CC1BD00BF23DD /* STSNavigationViewController.m */,
 				1E92702D196CB567007677E6 /* STSDerpyViewController.h */,
 				1E92702E196CB567007677E6 /* STSDerpyViewController.m */,
 				1E40400A196C4D6D00312CC6 /* STSAppDelegate.h */,
@@ -266,7 +276,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E927032196CB5CB007677E6 /* STSDerpyGameScene.m in Sources */,
+				1EBFF82E196CC1BD00BF23DD /* STSNavigationViewController.m in Sources */,
 				1E404008196C4D6D00312CC6 /* main.m in Sources */,
+				1EBFF82B196CBECE00BF23DD /* STSHelloScene.m in Sources */,
 				1E40400C196C4D6D00312CC6 /* STSAppDelegate.m in Sources */,
 				1E404012196C4D6D00312CC6 /* STSViewController.m in Sources */,
 				1E92702F196CB567007677E6 /* STSDerpyViewController.m in Sources */,

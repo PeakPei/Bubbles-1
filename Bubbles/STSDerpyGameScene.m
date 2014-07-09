@@ -34,7 +34,7 @@ typedef enum  {
                                                                                             action:@selector(flicked:)];
         [view addGestureRecognizer:gestureRecogniser];
         
-        self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 31, 100, 21)];
+        self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 71, 100, 21)];
         self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
         [self.view addSubview:self.scoreLabel];
     }
@@ -60,7 +60,7 @@ typedef enum  {
     
     self.physicsWorld.gravity = CGVectorMake(0.0,0.0);
     self.physicsWorld.contactDelegate = self;
-    CGRect smallFrame = CGRectMake(0, 50, self.frame.size.width, self.frame.size.height-110);
+    CGRect smallFrame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-60);
     NSLog(@"%f, %f", smallFrame.size.height, self.frame.size.height);
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:smallFrame];
     
@@ -74,7 +74,7 @@ typedef enum  {
         node.physicsBody.mass *= 2;
         node.size = CGSizeMake(80, 80);
         float x = arc4random() % (int)self.frame.size.width;
-        float y = (arc4random() % (int)smallFrame.size.height) + 50;
+        float y = (arc4random() % (int)smallFrame.size.height);
         node.position = CGPointMake(x, y);
         node.physicsBody.categoryBitMask = i;
         node.physicsBody.contactTestBitMask = i+15;
@@ -130,7 +130,7 @@ typedef enum  {
         {
             CGPoint move = [gr translationInView:self.view];
             SKAction *moveAction = [SKAction moveByX:move.x
-                                                   y:-move.y
+                                                   y:move.y
                                             duration:0];
             [self.playerCircle runAction:moveAction];
             [gr setTranslation:CGPointMake(0, 0)

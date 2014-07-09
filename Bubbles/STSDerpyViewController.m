@@ -25,7 +25,7 @@
     self = [super init];
     if (self) {
         self.view = [[SKView alloc] init];
-        self.tabBarItem.title = @"Derpy Mode";
+//        self.tabBarItem.title = @"Derpy Mode";
     }
     return self;
 }
@@ -37,7 +37,7 @@
         SKView *spriteView = (SKView *)self.view;
         [spriteView presentScene:self.game];
         self.timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(gameOver:) userInfo:nil repeats:NO];
-        self.timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 31, 300, 21)];
+        self.timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(200, 71, 300, 21)];
         
         //TIMER LABEL
         self.period = 30;
