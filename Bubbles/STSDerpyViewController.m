@@ -74,13 +74,14 @@
                                            message:[NSString stringWithFormat:@"New LOW Score: %d!", self.game.points]
                                           delegate:self
                                  cancelButtonTitle:@"Play Again"
-                                 otherButtonTitles:nil];
+                                 otherButtonTitles:@"Herp Derp", nil]
+        ;
     } else {
         alert = [[UIAlertView alloc] initWithTitle:@"Game Over"
                                            message:[NSString stringWithFormat:@"Points: %d", self.game.points]
                                           delegate:self
                                  cancelButtonTitle:@"Play Again"
-                                 otherButtonTitles:nil];
+                                 otherButtonTitles:@"Herp Derp", nil];
     }
 
    
@@ -93,8 +94,13 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    [self.game removeFromParent];
-    self.game = nil;
+    if (buttonIndex == 0) {
+        [self.game removeFromParent];
+        self.game = nil;
+        [self viewWillAppear:YES];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 //    self.game = [[STSDerpyGameScene alloc] initWithSize:self.view.frame.size];
 //    SKView *spriteView = (SKView *)self.view;
 //    [spriteView presentScene:self.game];
@@ -112,7 +118,7 @@
 //    NSTimeInterval timeLeft = [myTimerDate timeIntervalSinceNow];
 //    self.timerLabel.text = [NSString stringWithFormat:@"Time left: %.2f", timeLeft];
 //    [self.view addSubview:self.timerLabel];
-    [self viewWillAppear:YES];
+    
     
 }
 
