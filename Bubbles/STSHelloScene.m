@@ -31,7 +31,7 @@
     [self addChild:[self newDerpyNode]];
 }
 
-- (SKLabelNode *)newGameNode
+- (SKSpriteNode *)newGameNode
 {
     /*SKLabelNode *gameNode = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     helloNode.text = @"Hello, World!";
@@ -39,26 +39,40 @@
     helloNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
     helloNode.name = @"helloNode";
     return helloNode; */
-    SKLabelNode *gameNode = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
+    SKLabelNode *gameNode = [SKLabelNode labelNodeWithFontNamed:@"ChalkboardSE-Bold"];
     gameNode.text = @"Normal Game";
     gameNode.fontColor = [SKColor grayColor];
     gameNode.fontSize = 20;
     gameNode.position = CGPointMake(self.frame.size.width * 1/2, self.frame.size.height * 2/3);
-    gameNode.name = @"gameNode";
-    return gameNode;
+//    gameNode.name = @"gameNode";
+    
+    SKSpriteNode *bg = [SKSpriteNode spriteNodeWithColor:[UIColor blueColor] size:CGSizeMake(gameNode.frame.size.width+20, gameNode.frame.size.height+20)];
+    bg.position = gameNode.position;
+    gameNode.position = CGPointMake((bg.frame.size.width-gameNode.frame.size.width)/2 - 10, -(bg.frame.size.height - gameNode.frame.size.height)/2);
+    [bg addChild:gameNode];
+    bg.name = @"gameNode";
+    return bg;
     
     
 }
 
--(SKLabelNode *)newDerpyNode
+-(SKSpriteNode *)newDerpyNode
 {
-    SKLabelNode *derpyNode = [SKLabelNode labelNodeWithFontNamed:@"Arial"];
+    SKLabelNode *derpyNode = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     derpyNode.fontColor = [SKColor grayColor];
     derpyNode.text = @"Abnormal/Derpy Game";
     derpyNode.fontSize = 20;
     derpyNode.position = CGPointMake(self.frame.size.width * 1/2, self.frame.size.height * 1/3);
-    derpyNode.name = @"derpyNode";
-    return derpyNode;
+//    derpyNode.name = @"derpyNode";
+    
+    SKSpriteNode *bg = [SKSpriteNode spriteNodeWithColor:[UIColor redColor] size:CGSizeMake(derpyNode.frame.size.width + 20, derpyNode.frame.size.height +20)];
+    bg.position = derpyNode.position;
+    derpyNode.position = CGPointMake((bg.frame.size.width - derpyNode.frame.size.width)/2 - 10, -(bg.frame.size.height - derpyNode.frame.size.height)/2);
+    [bg addChild:derpyNode];
+    bg.name = @"derpyNode";
+    
+
+    return bg;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

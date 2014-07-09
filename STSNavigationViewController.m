@@ -35,15 +35,15 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    SKView *spriteView = (SKView *)self.view;
+//- (void)viewDidLoad
+//{
+//    [super viewDidLoad];
+//    
+//    SKView *spriteView = (SKView *)self.view;
 //    spriteView.showsDrawCount = YES;
 //    spriteView.showsNodeCount = YES;
 //    spriteView.showsFPS = YES;
-}
+//}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -75,6 +75,7 @@
     STSViewController *normal = [[STSViewController alloc] init];
     [self.navigationController pushViewController:normal
                                          animated:YES];
+    [normal.navigationItem setTitle:@"Normal Game"];
 }
 
 - (void)showDerpyGame
@@ -82,5 +83,6 @@
     STSDerpyViewController *derpy = [[STSDerpyViewController alloc] init];
     [self.navigationController pushViewController:derpy
                                          animated:YES];
+    [derpy.navigationItem setTitle:@"Abnormal/Derpy Game :}"];
 }
 @end
