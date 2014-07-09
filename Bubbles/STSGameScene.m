@@ -137,7 +137,6 @@ typedef enum  {
                                                        y:-move.y
                                                 duration:0];
                 [self.playerCircle runAction:moveAction];
-                NSLog(@"%f, %f", self.playerCircle.position.x, self.playerCircle.position.y);
                 [gr setTranslation:CGPointMake(0, 0)
                             inView:self.view];
             }
@@ -149,8 +148,8 @@ typedef enum  {
             CGPoint velocity = [gr velocityInView:self.view];
             CGPoint move = [gr translationInView:self.view];
             CGPoint newPos = CGPointMake(self.view.bounds.size.width /2, gr.view.center.y + move.y);
-            
-            if(newPos.y <= self.frame.size.height-60  && newPos.y > 0 && newPos.x <= self.frame.size.width && newPos.x > 0 && velocity.x > 15 && velocity.y > 15)
+            NSLog(@"Velocity: %f, %f", velocity.x, velocity.y);
+            if(newPos.y <= self.frame.size.height-60  && newPos.y > 0 && newPos.x <= self.frame.size.width && newPos.x > 0 && hypot(abs(velocity.x),abs(velocity.y)) > 200)
             {
                 
 
@@ -174,9 +173,9 @@ typedef enum  {
     {
         if (MAX(firstBody.categoryBitMask, secondBody.categoryBitMask) == MIN(firstBody.categoryBitMask, secondBody.categoryBitMask) + 6)
         {
-            NSLog(@"Contact between same colours");
+            //NSLog(@"Contact between same colours");
             self.points++;
-            NSLog(@"Won points: %d", self.points);
+            //NSLog(@"Won points: %d", self.points);
             int color = (arc4random() % 6);
             self.playerCircle.texture = [SKTexture textureWithImageNamed:self.circleImages[color]];
             self.playerCircle.physicsBody.categoryBitMask = color+6;
@@ -188,10 +187,10 @@ typedef enum  {
         else{
             if (firstBody.categoryBitMask != -1 && secondBody.categoryBitMask != -1)
             {
-                NSLog(@"%d, %d", firstBody.categoryBitMask, secondBody.categoryBitMask);
-                NSLog(@"Diff colours");
+                //NSLog(@"%d, %d", firstBody.categoryBitMask, secondBody.categoryBitMask);
+                //NSLog(@"Diff colours");
                 self.points--;
-                NSLog(@"Lost points: %d", self.points);
+                //NSLog(@"Lost points: %d", self.points);
                 self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
             }
         }
