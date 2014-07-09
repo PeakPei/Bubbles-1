@@ -36,7 +36,20 @@ typedef enum  {
         
         self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 71, 100, 21)];
         self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
+        
+        
+        self.lowScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 95, 150, 21)];
+        NSInteger lowScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"lowScore"];
+        if (lowScore)
+        {
+            self.lowScoreLabel.text = [NSString stringWithFormat:@"Low Score: %ld", (long)lowScore];
+        } else
+        {
+            self.lowScoreLabel.text = @"Low score: 0";
+        }
         [self.view addSubview:self.scoreLabel];
+        [self.view addSubview:self.lowScoreLabel];
+
     }
 }
 

@@ -36,7 +36,17 @@ typedef enum  {
         
         self.scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 71, 100, 21)];
         self.scoreLabel.text = [NSString stringWithFormat:@"Points: %d", self.points];
+        self.highScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 95, 150, 21)];
+        NSInteger highScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"highScore"];
+        if (highScore)
+        {
+            self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %ld", (long)highScore];
+        } else
+        {
+            self.highScoreLabel.text = @"High score: 0";
+        }
         [self.view addSubview:self.scoreLabel];
+        [self.view addSubview:self.highScoreLabel];
     }
 }
 

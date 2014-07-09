@@ -83,6 +83,6 @@
     STSDerpyViewController *derpy = [[STSDerpyViewController alloc] init];
     [self.navigationController pushViewController:derpy
                                          animated:YES];
-    [derpy.navigationItem setTitle:@"Abnormal/Derpy Game :}"];
+    [derpy.navigationItem setTitle:@"How low can you go? :}"];
 }
 @end

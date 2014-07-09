@@ -50,6 +50,12 @@
         NSTimeInterval timeLeft = [myTimerDate timeIntervalSinceNow];
         self.timerLabel.text = [NSString stringWithFormat:@"Time left: %.2f", timeLeft];
         [self.view addSubview:self.timerLabel];
+        
+        if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)])
+        {
+            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+        }
+
     }
 }
 
@@ -57,13 +63,30 @@
 {
     [self.displayTimer invalidate];
     self.displayTimer = nil;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game Over"
-                                                    message:[NSString stringWithFormat:@"Points: %d", self.game.points]
-                                                   delegate:self
-                                          cancelButtonTitle:@"Play Again"
-                                          otherButtonTitles:nil];
+    self.timer = nil;
+    
+    NSInteger lowScore = [[NSUserDefaults standardUserDefaults] integerForKey:@"lowScore"];
+    UIAlertView *alert;
+    if (self.game.points < lowScore)
+    {
+        [[NSUserDefaults standardUserDefaults] setInteger:self.game.points forKey:@"lowScore"];
+        alert = [[UIAlertView alloc] initWithTitle:@"Game Over"
+                                           message:[NSString stringWithFormat:@"New LOW Score: %d!", self.game.points]
+                                          delegate:self
+                                 cancelButtonTitle:@"Play Again"
+                                 otherButtonTitles:nil];
+    } else {
+        alert = [[UIAlertView alloc] initWithTitle:@"Game Over"
+                                           message:[NSString stringWithFormat:@"Points: %d", self.game.points]
+                                          delegate:self
+                                 cancelButtonTitle:@"Play Again"
+                                 otherButtonTitles:nil];
+    }
+
+   
     [self.game.scoreLabel removeFromSuperview];
     [self.timerLabel removeFromSuperview];
+    [self.game.lowScoreLabel removeFromSuperview];
     
     [alert show];
 }

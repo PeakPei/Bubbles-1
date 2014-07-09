@@ -14,5 +14,5 @@
 @property int points;
 //@property (nonatomic) NSTimer *timer;
 @property (nonatomic, strong) UILabel *scoreLabel;
-
+@property (nonatomic, strong) UILabel *highScoreLabel;
 @end
